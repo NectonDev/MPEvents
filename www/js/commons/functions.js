@@ -1,10 +1,18 @@
-var madridpatinaAPI = (function () {
-
+var functions = (function () {
+    var functions = {};
     var urlEvents = commons.urlEvents();
-
-    var madridpatinaAPI = {};
-
-    getInfoOfTheEvent = function (data) {
+    functions.getEventsByMonth = function (data, month) {
+        var regExp = "\\b" + month.replace(" ", "\\b \\b") + "\\b";
+        var events = [];
+        var eventsOfTheMonth = $(data).find(".tit > .tit_rojo").parent().parent().parent();
+        eventsOfTheMonth.each(function (index, value) {
+            if ($(value).html().search(regExp.toLowerCase()) > -1) {
+                events.push(functions.getInfoOfTheEvent($(value)));
+            }
+        });
+        return events;
+    },
+    functions.getInfoOfTheEvent = function (data) {
         var event = [];
         data.children("tr").each(function (index, value) {
             $(value).children("td").each(function (index, value) {
@@ -35,45 +43,16 @@ var madridpatinaAPI = (function () {
             });
         });
         return event;
-    };
-
-    getEventsByMonth = function (data, month) {
-        var regExp = "\\b" + month.replace(" ", "\\b \\b") + "\\b";
-        var events = [];
-        var eventsOfTheMonth = $(data).find(".tit > .tit_rojo").parent().parent().parent();
-        eventsOfTheMonth.each(function (index, value) {
-            if ($(value).html().search(regExp.toLowerCase()) > -1) {
-                events.push(getInfoOfTheEvent($(value)));
-            }
-        });
-        return events;
-    };
-
-    madridpatinaAPI.jsonEvents = function (data) {
-        var listEventsJson = [];
-        var monthsWithEvents = $(data).find("span.titulo_blanco");
-        monthsWithEvents.each(function (index, value) {
-            var event = [];
-            var month = $(value).text();
-            var info = getEventsByMonth(data, month);
-            event["month"] = month;
-            event["info"] = info;
-            listEventsJson.push(event);
-        });
-        return listEventsJson;
-    }
-
-    madridpatinaAPI.getHtmlEvents = function () {
-        var htmlEvents = $.ajax({
-            type: "GET",
-            url: urlEvents,
+    },
+    functions.getHtmlEvents = function($http) {
+        var htmlEvents = $http.get(urlEvents,{
             dataType: 'html'
         });
-        htmlEvents.done(function (data) {
+        htmlEvents.then(function(data){
             return data;
         });
         return htmlEvents;
-    };
+    }
 
-    return madridpatinaAPI;
+    return functions;
 })();

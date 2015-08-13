@@ -1,6 +1,6 @@
 angular.module('mpevents.services', [])
 
-.factory('Events', function() {
+.factory('Events', function($http, API) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -42,6 +42,14 @@ angular.module('mpevents.services', [])
         }
       }
       return null;
+    },
+    getJsonEvents: function(){
+      var htmlEvents = functions.getHtmlEvents($http);
+      var jsonEvents = htmlEvents.then(function(data){
+        var listJsonEvents = API.jsonEvents(data.data)
+        return listJsonEvents;
+      });
+      return jsonEvents;
     }
   };
 });

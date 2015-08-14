@@ -1,14 +1,14 @@
 <ion-view view-title="Eventos">
-  <ion-content class="has-header has-tabs-top">
+  <ion-content class="has-header">
     <ion-refresher
       pulling-text="Desliza para refrescar..."
       on-refresh="doRefresh()">
     </ion-refresher>
-    <ion-header-bar class="bar bar-header bar-assertive">
-      <h1 class="title">SEPTIEMBREE</h1>
-    </ion-header-bar>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="event in events" href="#/tab/events/{{event.month}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="event in events track by $index" href="#/tab/events/{{event.month}}/{{$index}}">
+        <ion-header-bar class="bar bar-header bar-assertive">
+          <h1 class="title">{{event.month}}</h1>
+        </ion-header-bar>
         <div ng-repeat="eventDetail in event.info">
           <img ng-src="{{eventDetail.img}}">
           <h3>{{eventDetail.title}}</h3>

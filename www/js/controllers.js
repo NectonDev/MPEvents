@@ -28,8 +28,8 @@ angular.module('mpevents.controllers', [])
     };
 })
 
-.controller('EventDetailCtrl', function($scope, $stateParams, API) {
-  //$scope.event = Events.get($stateParams.eventId);
+.controller('EventDetailCtrl', function($scope, $stateParams, Events) {
+  $scope.event = Events.getJsonDetailsEvents($stateParams.month, $stateParams.eventId);
 })
 
 .controller('AccountCtrl', function($scope) {

@@ -6,7 +6,7 @@
 
 .list {
   position: relative;
-  padding-top: 44px;
+  padding-top: $item-border-width;
   padding-bottom: $item-border-width;
   padding-left: 0; // reset padding because ul and ol
   margin-bottom: 20px;

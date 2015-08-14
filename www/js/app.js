@@ -60,7 +60,7 @@ angular.module('mpevents', ['ionic', 'mpevents.controllers', 'mpevents.api', 'mp
       }
     })
     .state('tab.event-detail', {
-      url: '/events/:eventId',
+      url: '/events/:month/:eventId',
       views: {
         'tab-events': {
           templateUrl: 'templates/event-detail.html',

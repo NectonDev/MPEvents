@@ -23,7 +23,9 @@ var functions = (function () {
                 var totalPlazas = $($(value).find(".tit_rojo")[2]).text();
                 var parrafoRuta = $(value).hasClass("parrafoclaro");
                 if (srcImgRuta != undefined) {
-                    event.img = commons.madridpatinaDomain()+srcImgRuta.trim();
+                    var imgSrcRutaTrimmed = srcImgRuta.trim();
+                    event.img = commons.madridpatinaDomain()+imgSrcRutaTrimmed;
+                    event.id = parseInt(imgSrcRutaTrimmed.slice(imgSrcRutaTrimmed.length-8, imgSrcRutaTrimmed.length).slice(0,4));
                 }
                 if (titleRuta != "") {
                     event.title = titleRuta.trim();
@@ -41,6 +43,7 @@ var functions = (function () {
                 if (parrafoRuta) {
                     event.desc = $(value).find("div").text().trim();
                 }
+
             });
         });
         return event;

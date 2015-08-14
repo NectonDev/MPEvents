@@ -5292,7 +5292,7 @@ a.item-content {
  */
 .list {
   position: relative;
-  padding-top: 1px;
+  padding-top: 44px;
   padding-bottom: 1px;
   padding-left: 0;
   margin-bottom: 20px; }
@@ -7692,3 +7692,6 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.listChange {
+  padding-top: 44px; }

@@ -4,8 +4,16 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('mpevents', ['ionic', 'mpevents.controllers', 'mpevents.api', 'mpevents.services'])
+// 'starter.controllers' is found in eventsController.js
+angular.module(
+  'mpevents',
+  [
+    'ionic',
+    'mpevents.homeController',
+    'mpevents.eventsController',
+    'mpevents.eventsService',
+    'mpevents.api'
+  ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -28,7 +36,7 @@ angular.module('mpevents', ['ionic', 'mpevents.controllers', 'mpevents.api', 'mp
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
+  // Each state's controller can be found in eventsController.js
   $stateProvider
 
   // setup an abstract state for the tabs directive

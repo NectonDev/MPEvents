@@ -1,4 +1,4 @@
-angular.module('mpevents.services', [])
+angular.module('mpevents.eventsService', [])
 
 .factory('Events', function($http, API) {
 
@@ -10,7 +10,11 @@ angular.module('mpevents.services', [])
       var htmlEvents = functions.getHtmlEvents($http);
       var jsonEvents = htmlEvents.then(function(data){
         var listJsonEvents = API.jsonEvents(data.data)
-        return listJsonEvents;
+        for (var i = 0; i < listJsonEvents.length; i++){
+          if (listJsonEvents[i].month === month){
+            return listJsonEvents[i].info[eventId];
+          }
+        }
       });
       return jsonEvents;
     },

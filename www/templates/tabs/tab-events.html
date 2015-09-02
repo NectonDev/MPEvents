@@ -4,13 +4,13 @@
       pulling-text="Desliza para refrescar..."
       on-refresh="doRefresh()">
     </ion-refresher>
-    <div ng-repeat="event in events track by $index">
-      <ion-header-bar class="bar bar-header bar-assertive">
-        <h1 class="title">{{event.month}}</h1>
-      </ion-header-bar>
+    <div ng-repeat="(month, event) in events | orderBy:'-':false track by $index">
       <ion-list>
-        <ion-item class="item-icon-right" href="#/tab/events/{{event.month}}/{{$index}}">
-          <div class="firstItem{{$index}}" ng-repeat="eventDetail in event.info">
+        <ion-header-bar class="bar bar-header bar-assertive">
+          <h1 class="title">{{month}}</h1>
+        </ion-header-bar>
+        <ion-item class="item-icon-right" href="#/tab/events/{{month}}/{{$index}}">
+          <div class="firstItem{{$index}}" ng-repeat="eventDetail in event">
             <img ng-src="{{eventDetail.img}}">
             <h3>{{eventDetail.title}}</h3>
             <h4>{{eventDetail.date}}</h4>

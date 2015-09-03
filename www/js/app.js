@@ -9,6 +9,7 @@ angular.module(
   'mpevents',
   [
     'ionic',
+    'ngOrderObjectBy',
     'mpevents.homeController',
     'mpevents.eventsController',
     'mpevents.eventsService',

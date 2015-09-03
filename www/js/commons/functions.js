@@ -3,19 +3,19 @@ var functions = (function () {
     var urlEvents = commons.urlEvents();
 
     functions.getEventsByMonth = function (data, month) {
-        var regExp = "\\b" + month.replace(" ", "\\b \\b") + "\\b";
+        var monthTrimmed = "\\b" + month.replace(" ", "\\b \\b") + "\\b";
         var events = [];
         var eventsOfTheMonth = $(data).find(".tit > .tit_rojo").parent().parent().parent();
         eventsOfTheMonth.each(function (index, value) {
-            if ($(value).html().search(regExp.toLowerCase()) > -1) {
-                events.push(functions.getInfoOfTheEvent($(value)));
+            if ($(value).html().search(monthTrimmed.toLowerCase()) > -1) {
+                events.push(functions.getInfoOfTheEvent($(value),month));
             }
         });
         return events;
     },
-    functions.getInfoOfTheEvent = function (data) {
+    functions.getInfoOfTheEvent = function (infoOfTheEvent, month) {
         var event = {};
-        data.children("tr").each(function (index, value) {
+        infoOfTheEvent.children("tr").each(function (index, value) {
             $(value).children("td").each(function (index, value) {
                 var srcImgRuta = $(value).find("img").attr("src");
                 var titleRuta = $(value).find(".tit_evento_listado").text();
@@ -23,6 +23,7 @@ var functions = (function () {
                 var totalPlazasOcupadas = $($(value).find(".tit_rojo")[1]).text();
                 var totalPlazasLibres = $($(value).find(".tit_rojo")[2]).text();
                 var parrafoRuta = $(value).hasClass("parrafoclaro");
+                event.numberOfMonth = commons.getNumberOfMonth(month);
                 if (srcImgRuta != undefined) {
                     var imgSrcRutaTrimmed = srcImgRuta.trim();
                     event.img = commons.madridpatinaDomain()+imgSrcRutaTrimmed;
@@ -44,7 +45,6 @@ var functions = (function () {
                 if (parrafoRuta) {
                     event.desc = $(value).find("div").text().trim();
                 }
-
             });
         });
         return event;

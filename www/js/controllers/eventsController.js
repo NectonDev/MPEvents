@@ -19,10 +19,9 @@ angular.module('mpevents.eventsController', [])
             var jsonEventsRefreshed = Events.getJsonEvents();
             jsonEventsRefreshed.then(function (data) {
                 $scope.events = data;
-            })
-                .finally(function () {
-                    $scope.$broadcast('scroll.refreshComplete');
-                });
+            }).finally(function () {
+                $scope.$broadcast('scroll.refreshComplete');
+            });
         };
     })
 

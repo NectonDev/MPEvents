@@ -1,6 +1,7 @@
 var functions = (function () {
     var functions = {};
     var urlEvents = commons.urlEvents();
+    var urlDetailedEvent = commons.urlDetailedEvent();
 
     functions.getEventsByMonth = function (data, month) {
         var monthTrimmed = "\\b" + month.replace(" ", "\\b \\b") + "\\b";
@@ -13,8 +14,17 @@ var functions = (function () {
         });
         return events;
     },
+    functions.getDetailedEvent = function(dataOfTheEvent, id){
+        var detailsOfEvent = new Object();
+        var dataOfTheEventJQuery = $(dataOfTheEvent);
+        var data = dataOfTheEventJQuery.find(".parrafoclaro");
+        detailsOfEvent.id = id;
+        detailsOfEvent.title = dataOfTheEventJQuery.find(".tit_evento").text().trim();
+        detailsOfEvent.desc = $(data[0]).text().trim();
+        return detailsOfEvent;
+    },
     functions.getInfoOfTheEvent = function (infoOfTheEvent, month) {
-        var event = {};
+        var event = new Object();
         infoOfTheEvent.children("tr").each(function (index, value) {
             $(value).children("td").each(function (index, value) {
                 var srcImgRuta = $(value).find("img").attr("src");
@@ -57,6 +67,17 @@ var functions = (function () {
             return data;
         });
         return htmlEvents;
+    }
+
+    functions.getHtmlDetailedEvent = function($http, id) {
+        var htmlDetailedEvent = $http.get(urlDetailedEvent,{
+            dataType: 'html',
+            params: {id: id}
+        });
+        htmlDetailedEvent.then(function(data){
+            return data;
+        });
+        return htmlDetailedEvent;
     }
 
     return functions;

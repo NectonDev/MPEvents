@@ -12,6 +12,10 @@ angular.module('mpevents.api', [])
                     listEventsJson[month] = info;
                 });
                 return listEventsJson;
+            },
+            jsonDetailedEvent : function (data, eventId) {
+                var DetailedEventJson = functions.getDetailedEvent(data, eventId);
+                return DetailedEventJson;
             }
         };
     });

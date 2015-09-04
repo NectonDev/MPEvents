@@ -12,7 +12,9 @@ angular.module(
     'ngOrderObjectBy',
     'mpevents.homeController',
     'mpevents.eventsController',
+    'mpevents.loginController',
     'mpevents.eventsService',
+    'mpevents.loginService',
     'mpevents.api'
   ])
 
@@ -91,7 +93,8 @@ angular.module(
           url: '/login',
           views: {
               'tab-login': {
-                  templateUrl: 'templates/tabs/tab-login.html'
+                  templateUrl: 'templates/tabs/tab-login.html',
+                  controller: 'LoginCtrl'
               }
           }
       });

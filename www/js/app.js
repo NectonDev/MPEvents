@@ -13,8 +13,10 @@ angular.module(
     'mpevents.homeController',
     'mpevents.eventsController',
     'mpevents.loginController',
+    'mpevents.accountController',
     'mpevents.eventsService',
     'mpevents.loginService',
+    'mpevents.accountService',
     'mpevents.api'
   ])
 
@@ -25,7 +27,6 @@ angular.module(
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -46,7 +47,8 @@ angular.module(
   .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'TabsController'
   })
 
   // Each tab has its own nav history stack:
@@ -89,15 +91,15 @@ angular.module(
       }
     }
   })
-      .state('tab.login', {
-          url: '/login',
-          views: {
-              'tab-login': {
-                  templateUrl: 'templates/tabs/tab-login.html',
-                  controller: 'LoginCtrl'
-              }
-          }
-      });
+  .state('tab.login', {
+    url: '/login',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tabs/tab-login.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');

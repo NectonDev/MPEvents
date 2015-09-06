@@ -2,6 +2,7 @@ var commons = (function () {
 
     var madridpatinaDomain = "http://www.madridpatina.com/";
     var urlLogin = madridpatinaDomain + "00_acceso_socio.php";
+    var urlLogout = madridpatinaDomain + "00_cerrar_sesion.php";
     var urlEvents = madridpatinaDomain + "eventos.php";
     var urlDetailedEvent = madridpatinaDomain + "eventos_detalle.php";
     var privateAreaPHP =  "area_privada.php";
@@ -29,6 +30,10 @@ var commons = (function () {
 
     commons.urlLogin = function () {
         return urlLogin;
+    };
+
+    commons.urlLogout = function () {
+        return urlLogout;
     };
 
     commons.urlEvents = function () {

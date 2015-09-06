@@ -1,6 +1,7 @@
 var loginFunctions = (function () {
     var loginFunctions = {};
     var urlLogin = commons.urlLogin();
+    var urlLogout = commons.urlLogout();
     var urlPrivateArea = commons.urlPrivateArea();
     var privateAreaPHP = commons.privateAreaPHP();
 
@@ -8,7 +9,7 @@ var loginFunctions = (function () {
         return data.data.indexOf(privateAreaPHP) > -1;
     };
 
-    checkLogin = function ($http, data) {
+    loginFunctions.checkLogin = function ($http, data) {
         if (data == undefined) {
             var checkLogin = $http.get(urlPrivateArea);
             return checkLogin.then(function (data) {
@@ -19,14 +20,14 @@ var loginFunctions = (function () {
         }
     };
 
-    loginFunctions.doLogin = function ($http, user, password) {
-        var postLogin = $http({
+    loginFunctions.doLogin = function ($http, username, password) {
+        return $http({
             url: urlLogin,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: {usuario: user, clave: password},
+            data: {usuario: username, clave: password},
             transformRequest: function(obj) {
                 var str = [];
                 for (var key in obj) {
@@ -45,10 +46,11 @@ var loginFunctions = (function () {
                 return str.join("&");
             }
         });
-        postLogin.then(function(data){
-            console.log(checkLogin($http, data));
-        });
     }
+
+    loginFunctions.doLogout = function ($http) {
+        return $http.get(urlLogout);
+    };
 
     return loginFunctions;
 })();

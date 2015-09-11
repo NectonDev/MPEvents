@@ -9,6 +9,7 @@ angular.module(
   'mpevents',
   [
     'ionic',
+    'ngCookies',
     'ngOrderObjectBy',
     'mpevents.homeController',
     'mpevents.eventsController',
@@ -34,6 +35,10 @@ angular.module(
     }
   });
 })
+
+.run(['$http', '$cookies', function($http, $cookies) {
+  $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
+}])
 
 .config(function($stateProvider, $urlRouterProvider) {
 

@@ -1,6 +1,6 @@
 angular.module('mpevents.eventsController', [])
 
-    .controller('EventsCtrl', function ($scope, $http, $ionicLoading, Events) {
+    .controller('EventsCtrl', function ($scope, $http, $ionicLoading, $ionicPopup, Events) {
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
         // To listen for when this page is active (for example, to refresh data),
@@ -25,7 +25,7 @@ angular.module('mpevents.eventsController', [])
         };
     })
 
-    .controller('EventDetailCtrl', function ($scope, $http, $ionicLoading, $stateParams, Events) {
+    .controller('EventDetailCtrl', function ($scope, $http, $ionicLoading, $stateParams, $ionicPopup, Events) {
         var jsonDetailEvent = Events.getJsonDetailsEvents($stateParams.month, $stateParams.eventId);
         $ionicLoading.show({
             template: 'Cargando detalles del evento'
@@ -34,6 +34,15 @@ angular.module('mpevents.eventsController', [])
             $scope.event = data;
             $ionicLoading.hide();
         });
+        $scope.showAlert = function() {
+            $ionicPopup.alert({
+                title: $scope.event.title,
+                template: 'Apuntado correctamente al evento'
+            });
+        };
+        $scope.goToEvent = function() {
+            Events.goToEvent($stateParams.eventId, $ionicLoading, $scope);
+        }
     })
 
     .controller('AccountCtrl', function ($scope) {

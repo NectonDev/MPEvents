@@ -2,6 +2,8 @@ var functions = (function () {
     var functions = {};
     var urlEvents = commons.urlEvents();
     var urlDetailedEvent = commons.urlDetailedEvent();
+    var goToEventPHP = commons.confirmEventPHP();
+    var notGoToEventPHP = commons.unconfirmEventPHP();
 
     functions.getEventsByMonth = function (data, month) {
         var monthTrimmed = "\\b" + month.replace(" ", "\\b \\b") + "\\b";
@@ -78,6 +80,31 @@ var functions = (function () {
             return data;
         });
         return htmlDetailedEvent;
+    }
+
+    functions.goToEvent = function ($http, id, ionicLoading, showAlert) {
+        var src_iframe = urlDetailedEvent+"?id="+id;
+        ionicLoading.show({
+            template: 'Apuntandote al evento'
+        });
+        if($('#iframe_gotoevent').length == 0){
+            $('body').append('<iframe sandbox="allow-forms" id="iframe_gotoevent" src="'+ src_iframe +'" >');
+        }else{
+            $('#iframe_gotoevent').attr('src',src_iframe);
+        }
+
+        $('#iframe_gotoevent').on('load',function (){
+            $('#iframe_gotoevent').contents().find('form').submit();
+            ionicLoading.hide();
+            $('#iframe_gotoevent').off('load');
+            if (functions.checkOkGoToEvent() == true){
+                showAlert.apply();
+            }
+        });
+    }
+
+    functions.checkOkGoToEvent = function() {
+        return true;
     }
 
     return functions;

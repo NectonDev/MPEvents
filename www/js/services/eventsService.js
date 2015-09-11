@@ -21,6 +21,9 @@ angular.module('mpevents.eventsService', [])
         return listJsonEvents;
       });
       return jsonEvents;
+    },
+    goToEvent: function(eventId, $ionicLoading, $scope){
+      functions.goToEvent($http, eventId, $ionicLoading, $scope.showAlert);
     }
   };
 });

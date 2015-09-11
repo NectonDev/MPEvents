@@ -20,7 +20,6 @@ angular.module('mpevents.loginService', [])
                     var checkLogin = loginFunctions.checkLogin($http, data);
                     if (checkLogin == false){
                         $rootScope.logged = false;
-                        $state.go('tab.login');
                     }
                 });
             },

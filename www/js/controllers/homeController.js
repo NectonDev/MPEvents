@@ -21,7 +21,7 @@ angular.module('mpevents.homeController', [])
             }
         });
         $scope.hideLogin = function(){
-            console.log($rootScope.logged);
+            //console.log($rootScope.logged);
             return $rootScope.logged;
         }
     })

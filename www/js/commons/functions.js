@@ -46,13 +46,21 @@ var functions = (function () {
                 }
                 if (dateRuta != "") {
                     event.date = dateRuta.trim();
-                    event.totalPlazasLibres = parseInt(totalPlazasLibres, 10);
+                    if (isNaN(totalPlazasLibres)){
+                        event.totalPlazasLibres = "Sin limite";
+                    }else{
+                        event.totalPlazasLibres = parseInt(totalPlazasLibres, 10);
+                    }
                     if (isNaN(totalPlazasOcupadas)) {
                         event.totalPlazasOcupadas = 0;
                     } else {
                         event.totalPlazasOcupadas = parseInt(totalPlazasOcupadas, 10);
                     }
-                    event.totalPlazas = event.totalPlazasLibres + event.totalPlazasOcupadas;
+                    if (isNaN(totalPlazasLibres)){
+                        event.totalPlazas = "Sin limite"
+                    }else{
+                        event.totalPlazas = event.totalPlazasLibres + event.totalPlazasOcupadas;
+                    }
                 }
                 if (parrafoRuta) {
                     event.desc = $(value).find("div").text().trim();

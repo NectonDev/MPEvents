@@ -1,9 +1,9 @@
 var functions = (function () {
     var functions = {};
+    var madridpatinaDomain = commons.madridpatinaDomain();
     var urlEvents = commons.urlEvents();
     var urlDetailedEvent = commons.urlDetailedEvent();
-    var goToEventPHP = commons.confirmEventPHP();
-    var notGoToEventPHP = commons.unconfirmEventPHP();
+    var urlMyEvents = commons.urlMyEvents();
 
     functions.getEventsByMonth = function (data, month) {
         var monthTrimmed = "\\b" + month.replace(" ", "\\b \\b") + "\\b";
@@ -69,6 +69,20 @@ var functions = (function () {
         });
         return event;
     },
+
+    functions.getMyEvents = function(dataOfMyEvents){
+        var myEvents = new Object();
+        var arrayEvents = $(dataOfMyEvents).find(".parrafo > ul > li > a");
+        $(arrayEvents).each(function(index, value){
+            var event = new Object();
+            event.urlOfTheEvent = madridpatinaDomain + "/" + $(value).attr('href');
+            event.idOfTheEvent = parseInt($(value).attr('href').split("=")[1]);
+            event.title = $(value).text().trim();
+            myEvents[index] = event;
+        });
+        return myEvents;
+    },
+
     functions.getHtmlEvents = function($http) {
         var htmlEvents = $http.get(urlEvents,{
             dataType: 'html'
@@ -77,7 +91,7 @@ var functions = (function () {
             return data;
         });
         return htmlEvents;
-    }
+    },
 
     functions.getHtmlDetailedEvent = function($http, id) {
         var htmlDetailedEvent = $http.get(urlDetailedEvent,{
@@ -88,7 +102,17 @@ var functions = (function () {
             return data;
         });
         return htmlDetailedEvent;
-    }
+    },
+
+    functions.getHtmlMyEvents = function($http){
+        var htmlMyEvents = $http.get(urlMyEvents,{
+            dataType: 'html'
+        });
+        htmlMyEvents.then(function(data){
+            return data;
+        });
+        return htmlMyEvents;
+    },
 
     functions.goToEvent = function ($http, id, ionicLoading, showAlert) {
         var src_iframe = urlDetailedEvent+"?id="+id;
@@ -105,14 +129,15 @@ var functions = (function () {
             $('#iframe_gotoevent').contents().find('form').submit();
             ionicLoading.hide();
             $('#iframe_gotoevent').off('load');
-            if (functions.checkOkGoToEvent() == true){
+            if (functions.checkOkGoToEvent(id) == true){
                 showAlert.apply();
             }
         });
-    }
+    },
 
-    functions.checkOkGoToEvent = function() {
-        return true;
+    functions.checkOkGoToEvent = function(id) {
+        console.log(id);
+
     }
 
     return functions;

@@ -26,7 +26,10 @@ angular.module('mpevents.eventsController', [])
     })
 
     .controller('EventDetailCtrl', function ($scope, $http, $ionicLoading, $stateParams, $ionicPopup, Events) {
-        var jsonDetailEvent = Events.getJsonDetailsEvents($stateParams.month, $stateParams.eventId);
+        var jsonDetailEvent = Events.getJsonDetailsEvents($stateParams.eventId);
+        $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+            viewData.enableBack = true;
+        });
         $ionicLoading.show({
             template: 'Cargando detalles del evento'
         });
@@ -44,9 +47,3 @@ angular.module('mpevents.eventsController', [])
             Events.goToEvent($stateParams.eventId, $ionicLoading, $scope);
         }
     })
-
-    .controller('AccountCtrl', function ($scope) {
-        $scope.settings = {
-            enableFriends: true
-        };
-    });

@@ -78,7 +78,7 @@ angular.module(
       }
     })
     .state('tab.event-detail', {
-      url: '/events/:month/:eventId',
+      url: '/events/:eventId',
       views: {
         'tab-events': {
           templateUrl: 'templates/event-detail.html',

@@ -1,14 +1,14 @@
 angular.module('mpevents.homeController', [])
 
     .controller('HomeCtrl', function($rootScope, $http, $state, Login) {
-        var isLogged = Login.checkIsLogged();
+        /*var isLogged = Login.checkIsLogged();
         isLogged.then(function (data) {
             if (data == true){
                 $rootScope.logged = true;
             }else{
                 $rootScope.logged = false;
             }
-        });
+        });*/
     })
 
     .controller('TabsController', function($scope, $rootScope, Login) {
@@ -21,7 +21,6 @@ angular.module('mpevents.homeController', [])
             }
         });
         $scope.hideLogin = function(){
-            //console.log($rootScope.logged);
             return $rootScope.logged;
         }
     })

@@ -11,21 +11,19 @@ angular.module('mpevents.loginService', [])
                         $state.go('tab.account');
                     }else{
                         $rootScope.logged = false;
+                        $state.go('tab.login');
                     }
                 });
             },
             doLogout: function() {
                 var doLogout = loginFunctions.doLogout($http);
                 doLogout.then(function(data){
-                    var checkLogin = loginFunctions.checkLogin($http, data);
-                    if (checkLogin == false){
-                        $rootScope.logged = false;
-                    }
+                    $rootScope.logged = loginFunctions.checkLogin($http, data);
+                    $state.go('tab.login');
                 });
             },
             checkIsLogged: function(){
-                var isLogged = loginFunctions.checkLogin($http);
-                return isLogged;
+                return loginFunctions.checkLogin($http);
             }
         };
     });

@@ -6,11 +6,9 @@ var commons = (function () {
     var urlEvents = madridpatinaDomain + "eventos.php";
     var urlDetailedEvent = madridpatinaDomain + "eventos_detalle.php";
     var privateAreaPHP =  "area_privada.php";
-    var confirmEventPHP = "eventos_confirmar_alta.php";
-    var unconfirmEventPHP = "eventos_confirmar_baja.php";
+    var myEventsPHP = "area_privada_tuseventos.php";
     var urlPrivateArea = madridpatinaDomain + privateAreaPHP;
-    var urlGoToEvent = madridpatinaDomain + confirmEventPHP;
-    var urlNotGoToEvent = madridpatinaDomain + unconfirmEventPHP;
+    var urlMyEvents = madridpatinaDomain + myEventsPHP;
 
     var months = new Array();
     months["ENERO"] = 0;
@@ -52,24 +50,16 @@ var commons = (function () {
         return privateAreaPHP;
     };
 
-    commons.confirmEventPHP = function(){
-        return confirmEventPHP;
-    };
-
-    commons.unconfirmEventPHP = function(){
-        return unconfirmEventPHP;
+    commons.myEventsPHP = function(){
+        return myEventsPHP;
     };
 
     commons.urlPrivateArea = function(){
         return urlPrivateArea;
     };
 
-    commons.urlGoToEvent = function(){
-        return urlGoToEvent;
-    };
-
-    commons.urlNotGoToEvent = function(){
-        return urlNotGoToEvent;
+    commons.urlMyEvents = function(){
+        return urlMyEvents;
     };
 
     commons.getNumberOfMonth = function(month){

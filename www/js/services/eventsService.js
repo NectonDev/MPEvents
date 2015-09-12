@@ -3,10 +3,7 @@ angular.module('mpevents.eventsService', [])
 .factory('Events', function($http, API) {
 
   return {
-    all: function() {
-      return events;
-    },
-    getJsonDetailsEvents: function(month, eventId){
+    getJsonDetailsEvents: function(eventId){
       var htmlDetailedEvent = functions.getHtmlDetailedEvent($http, eventId);
       var jsonDetailedEvent = htmlDetailedEvent.then(function(data){
         var listJsonDetailedEvent = API.jsonDetailedEvent(data.data, eventId);
@@ -24,6 +21,14 @@ angular.module('mpevents.eventsService', [])
     },
     goToEvent: function(eventId, $ionicLoading, $scope){
       functions.goToEvent($http, eventId, $ionicLoading, $scope.showAlert);
+    },
+    getMyEvents: function(){
+      var htmlMyEvents = functions.getHtmlMyEvents($http);
+      var jsonMyEvents = htmlMyEvents.then(function(data){
+        var listJsonMyEvents = API.jsonMyEvents(data.data);
+        return listJsonMyEvents;
+      });
+      return jsonMyEvents;
     }
   };
 });

@@ -6,22 +6,22 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-top tabs-top tabs-color-light tabs-background-assertive">
 
   <!-- Dashboard Tab -->
-  <ion-tab title="P&aacute;gina principal" icon-off="ion-home" icon-on="ion-home" href="#/tab/home">
+  <ion-tab title="P&aacute;gina principal" icon-off="ion-home" icon-on="ion-home" ui-sref="tab.home">
     <ion-nav-view name="tab-home"></ion-nav-view>
   </ion-tab>
 
   <!-- Chats Tab -->
-  <ion-tab title="Eventos" icon-off="ion-earth" icon-on="ion-earth" href="#/tab/events">
+  <ion-tab title="Eventos" icon-off="ion-earth" icon-on="ion-earth" ui-sref="tab.events">
     <ion-nav-view name="tab-events"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab ng-if="hideLogin()" title="Tu Cuenta" icon-off="ion-outlet" icon-on="ion-outlet" href="#/tab/account">
+  <ion-tab ng-if="hideLogin()" title="Tu Cuenta" icon-off="ion-outlet" icon-on="ion-outlet" ui-sref="tab.account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 
   <!-- Login Tab -->
-  <ion-tab ng-if="!hideLogin()" title="Login" icon-off="ion-log-in" icon-on="ion-log-in" href="#/tab/login">
+  <ion-tab ng-if="!hideLogin()" title="Login" icon-off="ion-log-in" icon-on="ion-log-in" ui-sref="tab.login">
     <ion-nav-view name="tab-login"></ion-nav-view>
   </ion-tab>
 

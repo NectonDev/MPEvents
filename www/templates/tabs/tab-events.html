@@ -10,7 +10,7 @@
           <h1 class="title">{{event.objectID}}</h1>
         </ion-header-bar>
         <div class="firstItem{{$index}}" ng-repeat="eventDetail in event">
-          <ion-item class="item-icon-right" href="#/tab/events/{{event.objectID}}/{{eventDetail.id}}">
+          <ion-item class="item-icon-right" ui-sref="tab.event-detail({eventId: eventDetail.id})">
               <img ng-src="{{eventDetail.img}}">
               <h3>{{eventDetail.title}}</h3>
               <h4>{{eventDetail.date}}</h4>

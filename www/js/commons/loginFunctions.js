@@ -5,18 +5,14 @@ var loginFunctions = (function () {
     var urlPrivateArea = commons.urlPrivateArea();
     var privateAreaPHP = commons.privateAreaPHP();
 
-    checkIsLogged = function (data) {
-        return data.data.indexOf(privateAreaPHP) > -1;
-    };
-
     loginFunctions.checkLogin = function ($http, data) {
         if (data == undefined) {
             var checkLogin = $http.get(urlPrivateArea);
             return checkLogin.then(function (data) {
-                return checkIsLogged(data);
+                return data.data.indexOf(privateAreaPHP) > -1
             });
         } else {
-            return checkIsLogged(data);
+            return data.data.indexOf(privateAreaPHP) > -1;
         }
     };
 

@@ -13,7 +13,6 @@ angular.module(
     'ngOrderObjectBy',
     'mpevents.homeController',
     'mpevents.eventsController',
-    'mpevents.loginController',
     'mpevents.accountController',
     'mpevents.eventsService',
     'mpevents.loginService',
@@ -52,14 +51,15 @@ angular.module(
   .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html',
-    controller: 'TabsController'
+    cache: false,
+    templateUrl: 'templates/tabs.html'
   })
 
   // Each tab has its own nav history stack:
 
   .state('tab.home', {
     url: '/home',
+    cache: false,
     views: {
       'tab-home': {
         templateUrl: 'templates/tabs/tab-home.html',
@@ -99,7 +99,7 @@ angular.module(
   .state('tab.login', {
     url: '/login',
     views: {
-      'tab-login': {
+      'tab-user': {
         templateUrl: 'templates/tabs/tab-login.html',
         controller: 'LoginCtrl'
       }

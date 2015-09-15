@@ -16,14 +16,14 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab ng-if="hideLogin()" title="Tu Cuenta" icon-off="ion-outlet" icon-on="ion-outlet" ui-sref="tab.account">
+  <ion-tab title="{{loginConf.title}}" icon-off="{{loginConf.iconOff}}" icon-on="{{loginConf.iconOn}}" ui-sref="tab.account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
 
   <!-- Login Tab -->
-  <ion-tab ng-if="!hideLogin()" title="Login" icon-off="ion-log-in" icon-on="ion-log-in" ui-sref="tab.login">
+  <!--<ion-tab title="Login" icon-off="ion-log-in" icon-on="{{iconOn}}" ui-sref="tab.login">
     <ion-nav-view name="tab-login"></ion-nav-view>
-  </ion-tab>
+  </ion-tab>-->
 
 
 </ion-tabs>

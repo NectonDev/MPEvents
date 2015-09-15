@@ -10,7 +10,7 @@
         <img ng-src="{{event.img}}">
         <p>{{event.desc}}</p>
       </div>
-      <button ng-if="hideLogin()" class="button button-block button-assertive" ng-click="goToEvent()">
+      <button ng-if="isLogged()" class="button button-block button-assertive" ng-click="goToEvent()">
         Asistir&eacute;
       </button>
     </div>

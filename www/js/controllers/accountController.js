@@ -1,11 +1,11 @@
 angular.module('mpevents.accountController', [])
 
-    .controller('AccountCtrl', function ($scope, Login, Events) {
-        var jsonMyEvents = Events.getMyEvents();
-        jsonMyEvents.then(function (data) {
-            $scope.myevents = data;
-        });
+    .controller('AccountCtrl', function ($scope, Login) {
+        $scope.data = {};
+        $scope.Login = function() {
+            Login.doLogin($scope);
+        }
         $scope.Logout = function() {
-            Login.doLogout();
+            Login.doLogout($scope);
         }
     });

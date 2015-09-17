@@ -5,20 +5,19 @@ angular.module('mpevents.homeController', [])
         isLogged.then(function (data) {
             if (data == true){
                 $rootScope.logged = true;
-                var loginConf = {
+                $rootScope.loginConf = {
                     iconOn : 'ion-outlet',
                     iconOff : 'ion-outlet',
                     title: 'Tu cuenta'
                 };
             }else{
                 $rootScope.logged = false;
-                var loginConf = {
+                $rootScope.loginConf = {
                     iconOn : 'ion-log-in',
                     iconOff : 'ion-log-in',
                     title: 'Login'
                 };
             }
-            $rootScope.loginConf = loginConf;
         });
         $scope.isLogged = function(){
             return $rootScope.logged;

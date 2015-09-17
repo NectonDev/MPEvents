@@ -9,31 +9,29 @@ angular.module('mpevents.loginService', [])
                     var isLogged = loginFunctions.checkLogin($http, data);
                     $rootScope.logged = isLogged;
                     if (isLogged){
-                        var loginConf = {
+                        $rootScope.loginConf = {
                             iconOn : 'ion-outlet',
                             iconOff : 'ion-outlet',
                             title: 'Tu cuenta'
                         };
                     }else{
-                        var loginConf = {
+                        $rootScope.loginConf = {
                             iconOn : 'ion-log-in',
                             iconOff : 'ion-log-in',
                             title: 'Login'
                         };
                     }
-                    $rootScope.loginConf = loginConf;
                 });
             },
-            doLogout: function($scope) {
+            doLogout: function() {
                 var doLogout = loginFunctions.doLogout($http);
                 doLogout.then(function(data){
                     $rootScope.logged = loginFunctions.checkLogin($http, data);
-                    var loginConf = {
+                    $rootScope.loginConf = {
                         iconOn : 'ion-log-in',
                         iconOff : 'ion-log-in',
                         title: 'Login'
                     };
-                    $rootScope.loginConf = loginConf;
                 });
             },
             checkIsLogged: function(){

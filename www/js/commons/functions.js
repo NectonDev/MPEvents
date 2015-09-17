@@ -137,7 +137,6 @@ var functions = (function () {
 
     functions.checkOkGoToEvent = function(id) {
         console.log(id);
-
     }
 
     return functions;

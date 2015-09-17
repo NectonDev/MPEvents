@@ -6,6 +6,6 @@ angular.module('mpevents.accountController', [])
             Login.doLogin($scope);
         }
         $scope.Logout = function() {
-            Login.doLogout($scope);
+            Login.doLogout();
         }
     });

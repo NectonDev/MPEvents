@@ -20,7 +20,14 @@ angular.module('mpevents.eventsService', [])
       return jsonEvents;
     },
     goToEvent: function(eventId, $ionicLoading, $scope){
-      functions.goToEvent($http, eventId, $ionicLoading, $scope.showAlert);
+      functions.goToEvent($http, eventId, $ionicLoading);
+      var htmlMyEvents = functions.getHtmlMyEvents($http);
+      htmlMyEvents.then(function(data){
+        var listJsonMyEvents = API.jsonMyEvents(data.data);
+        if (functions.checkOkGoToEvent(eventId,listJsonMyEvents) == true){
+          $scope.showAlert();
+        }
+      });
     },
     getMyEvents: function(){
       var htmlMyEvents = functions.getHtmlMyEvents($http);

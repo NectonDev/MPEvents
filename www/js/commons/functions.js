@@ -114,7 +114,7 @@ var functions = (function () {
         return htmlMyEvents;
     },
 
-    functions.goToEvent = function ($http, id, ionicLoading, showAlert) {
+    functions.goToEvent = function ($http, id, ionicLoading) {
         var src_iframe = urlDetailedEvent+"?id="+id;
         ionicLoading.show({
             template: 'Apuntandote al evento'
@@ -129,14 +129,11 @@ var functions = (function () {
             $('#iframe_gotoevent').contents().find('form').submit();
             ionicLoading.hide();
             $('#iframe_gotoevent').off('load');
-            if (functions.checkOkGoToEvent(id) == true){
-                showAlert.apply();
-            }
         });
     },
 
-    functions.checkOkGoToEvent = function(id) {
-        console.log(id);
+    functions.checkOkGoToEvent = function(eventId,listJsonMyEvents) {
+        console.log(eventId + " " + listJsonMyEvents );
     }
 
     return functions;

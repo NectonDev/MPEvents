@@ -19,6 +19,7 @@ angular.module('mpevents.eventsService', [])
       });
       return jsonEvents;
     },
+
     goToEvent: function(eventId, $ionicLoading, $scope){
       functions.goToEvent($http, eventId, $ionicLoading);
       var htmlMyEvents = functions.getHtmlMyEvents($http);

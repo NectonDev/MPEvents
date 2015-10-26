@@ -14,8 +14,9 @@
               <img ng-src="{{eventDetail.img}}">
               <h3>{{eventDetail.title}}</h3>
               <h4>{{eventDetail.date}}</h4>
-              <h4 ng-if="eventDetail.totalPlazas!='Sin limite'">{{eventDetail.totalPlazasLibres}} plazas libres de {{eventDetail.totalPlazas}} plazas totales</h4>
-              <h4 ng-if="eventDetail.totalPlazas=='Sin limite'">{{eventDetail.totalPlazasOcupadas}} apuntados. Sin limite de plazas</h4>
+              <h4 ng-if="eventDetail.totalPlazasLibres=='Completo!'">{{eventDetail.totalPlazasLibres}}</h4>
+              <h4 ng-if="eventDetail.totalPlazasLibres!='Sin limite' && eventDetail.totalPlazasLibres!='Completo!'">{{eventDetail.totalPlazasLibres}} plazas libres de {{eventDetail.totalPlazas}} plazas totales</h4>
+              <h4 ng-if="eventDetail.totalPlazasLibres=='Sin limite'">{{eventDetail.totalPlazasOcupadas}} apuntados. Sin limite de plazas</h4>
             <i class="icon ion-chevron-right icon-accessory"></i>
           </ion-item>
         </div>

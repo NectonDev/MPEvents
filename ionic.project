@@ -8,11 +8,5 @@
   "watchPatterns": [
     "www/**/*",
     "!www/lib/**/*"
-  ],
-  "proxies": [
-    {
-      "path": "/eventos",
-      "proxyUrl": "http://www.madridpatina.com/eventos.php"
-    }
   ]
 }

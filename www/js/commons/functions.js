@@ -47,7 +47,11 @@ var functions = (function () {
                 if (dateRuta != "") {
                     event.date = dateRuta.trim();
                     if (isNaN(totalPlazasLibres)){
-                        event.totalPlazasLibres = "Sin limite";
+                        if (totalPlazasLibres == "Completo!"){
+                            event.totalPlazasLibres = "Completo!";
+                        }else{
+                            event.totalPlazasLibres = "Sin limite";
+                        }
                     }else{
                         event.totalPlazasLibres = parseInt(totalPlazasLibres, 10);
                     }
@@ -57,7 +61,11 @@ var functions = (function () {
                         event.totalPlazasOcupadas = parseInt(totalPlazasOcupadas, 10);
                     }
                     if (isNaN(totalPlazasLibres)){
-                        event.totalPlazas = "Sin limite"
+                        if (totalPlazasLibres == "Completo!"){
+                            event.totalPlazasLibres = "Completo!";
+                        }else{
+                            event.totalPlazasLibres = "Sin limite";
+                        }
                     }else{
                         event.totalPlazas = event.totalPlazasLibres + event.totalPlazasOcupadas;
                     }
